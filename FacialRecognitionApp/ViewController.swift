@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Vision
+import Photos
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate
+{
 
     override func viewDidLoad() {
         super.viewDidLoad()
