@@ -4,10 +4,11 @@
 //
 //  Created by Aurela Bala on 2023-04-02.
 //
-
+import Foundation
 import UIKit
 import Vision
 import Photos
+
 
 
 
@@ -34,5 +35,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
      picker.sourceType = .savedPhotosAlbum
      present(picker, animated: true, completion: nil)
      }
+    
+    func analyzeImage(image: UIImage)
+    {
+     let handler = VNImageRequestHandler(cgImage: image.cgImage!, options: [ : ])
+     messageLabel.text = "Analyzing picture..."
+     let request =
+     VNDetectFaceRectanglesRequest(completionHandler: handleFaceRecognition)
+     try! handler.perform([request])
+    }
+    
+    func handleFaceRecognition(request: VNRequest, error: Error?) {
+        guard let foundFaces = request.results as? [VNFaceObservation] else {
+            fatalError ("Can't find a face in the picture")
+        }
+        messageLabel.text = "Found \(foundFaces.count) faces in the picture"
+    }
 }
 
