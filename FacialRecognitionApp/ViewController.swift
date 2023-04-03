@@ -51,5 +51,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         messageLabel.text = "Found \(foundFaces.count) faces in the picture"
     }
+
+    
+    func imagePickerController(_ picker: UIImagePickerController,
+     didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
+     {
+     if let gotImage =
+     info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+     {
+     picker.dismiss(animated: true, completion: nil)
+     pictureChosen.image = gotImage
+     analyzeImage(image: gotImage)
+     //identifyFacesWithLandmarks(image: gotImage)
+     }
+         
+         
+     }
+    
+   
+    
+
+    
+   
 }
 
